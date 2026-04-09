@@ -8,21 +8,21 @@ function wrapper({ children }: { children: ReactNode }) {
 }
 
 describe("SuspendComponent", () => {
-  it("rendered with await act(async () => ...)", async () => {
+  it("rendered with `await act(async () => ...)`", async () => {
     await act(async () => {
       render(<SuspendComponent data={Promise.resolve("foo")} />, { wrapper });
     });
     expect(await screen.findByText("Hello, foo!")).toBeInTheDocument();
   });
 
-  it.fails("rendered with act(() => ...)", async () => {
+  it.fails("rendered with `act(() => ...)`", async () => {
     act(() => {
       render(<SuspendComponent data={Promise.resolve("foo")} />, { wrapper });
     });
     expect(await screen.findByText("Hello, foo!")).toBeInTheDocument();
   });
 
-  it.fails("rendered without act(async () => ...)", async () => {
+  it.fails("rendered without `act(async () => ...)`", async () => {
     render(<SuspendComponent data={Promise.resolve("foo")} />);
     expect(await screen.findByText("Hello, foo!")).toBeInTheDocument();
   });
