@@ -23,7 +23,7 @@ describe("SuspendComponent", () => {
   });
 
   it.fails("rendered without `act(async () => ...)`", async () => {
-    render(<SuspendComponent data={Promise.resolve("foo")} />);
+    render(<SuspendComponent data={Promise.resolve("foo")} />, { wrapper });
     expect(await screen.findByText("Hello, foo!")).toBeInTheDocument();
   });
 });
